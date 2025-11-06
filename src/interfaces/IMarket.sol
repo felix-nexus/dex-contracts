@@ -51,3 +51,7 @@ interface IMarketV2 {
         external
         returns (address);
 }
+
+interface IMarketV3 is IMarketV2 {
+    function CROSS_DEX() external view returns (address);
+}
