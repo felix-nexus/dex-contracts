@@ -18,6 +18,24 @@
 
 ---
 
+## ⚠️ 중요한 규칙
+
+### CLI 명령어 플래그 위치
+
+**모든 CLI 명령어(gorge, cast, forge 등)는 플래그[OPTION]를 명령어 바로 다음에 입력합니다:**
+
+```bash
+# ✅ 올바른 방법
+gorge write --rpc-url <RPC> --sender <SENDER> --out <FILE> <CONTRACT> "function()" ...
+cast call --rpc-url <RPC> <CONTRACT> "function()(returnType)"
+
+# ❌ 잘못된 방법 (플래그를 끝에 배치하면 안 됨)
+gorge write <CONTRACT> "function()" ... --rpc-url <RPC>
+cast call <CONTRACT> "function()" --rpc-url <RPC>
+```
+
+---
+
 ## 기본 개념
 
 ### Gorge 3단계 프로세스

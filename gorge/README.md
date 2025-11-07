@@ -41,6 +41,25 @@ CROSS DEX 컨트랙트 관리를 위한 문서 모음입니다.
 
 ---
 
+## ⚠️ 중요한 규칙
+
+### CLI 명령어 플래그 위치
+
+**모든 CLI 명령어(gorge, cast, forge 등)는 플래그[OPTION]를 명령어 바로 다음에 입력합니다:**
+
+```bash
+# ✅ 올바른 방법
+gorge write --rpc-url <RPC> --sender <SENDER> --out <FILE> <CONTRACT> "function()" ...
+cast call --rpc-url <RPC> <CONTRACT> "function()(returnType)"
+cast nonce --rpc-url <RPC> <ADDRESS>
+
+# ❌ 잘못된 방법 (플래그를 끝에 배치)
+gorge write <CONTRACT> "function()" ... --rpc-url <RPC> --sender <SENDER>
+cast call <CONTRACT> "function()(returnType)" --rpc-url <RPC>
+```
+
+---
+
 ## 🚀 빠른 시작
 
 ### 1. 환경 설정
@@ -214,16 +233,16 @@ AI: [완전한 gorge write, sign, send 스크립트 생성]
 
 ```bash
 # Nonce 확인
-cast nonce $ADDRESS --rpc-url $RPC
+cast nonce --rpc-url $RPC $ADDRESS
 
 # Owner 확인
-cast call $CONTRACT "owner()(address)" --rpc-url $RPC
+cast call --rpc-url $RPC $CONTRACT "owner()(address)"
 
 # FeeCollector 확인
-cast call $MARKET "feeCollector()(address)" --rpc-url $RPC
+cast call --rpc-url $RPC $MARKET "feeCollector()(address)"
 
 # 트랜잭션 상태 확인
-cast receipt $TX_HASH --rpc-url $RPC
+cast receipt --rpc-url $RPC $TX_HASH
 ```
 
 ### Gorge 명령어 도움말

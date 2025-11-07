@@ -4,6 +4,21 @@
 
 ---
 
+## ⚠️ 중요: CLI 명령어 플래그 위치
+
+**모든 CLI 명령어는 플래그[OPTION]를 명령어 바로 다음에 입력합니다:**
+
+```bash
+# ✅ 올바른 방법
+gorge write --rpc-url <RPC> --sender <SENDER> --out <FILE> <CONTRACT> "function()" ...
+cast call --rpc-url <RPC> <CONTRACT> "function()"
+
+# ❌ 잘못된 방법
+cast call <CONTRACT> "function()" --rpc-url <RPC>
+```
+
+---
+
 ## 기본 템플릿
 
 ### Write → Sign → Send
@@ -179,14 +194,14 @@ cast calldata "function(type)" arg
 cast abi-encode "constructor(uint32,uint32,uint32,uint32)" 10 10 10 10
 
 # 트랜잭션 확인
-cast tx $TX_HASH --rpc-url $RPC
-cast receipt $TX_HASH --rpc-url $RPC
+cast tx --rpc-url $RPC $TX_HASH
+cast receipt --rpc-url $RPC $TX_HASH
 
 # 컨트랙트 호출 (read-only)
-cast call $CONTRACT "function()(returnType)" --rpc-url $RPC
+cast call --rpc-url $RPC $CONTRACT "function()(returnType)"
 
 # Owner 확인
-cast call $CONTRACT "owner()(address)" --rpc-url $RPC
+cast call --rpc-url $RPC $CONTRACT "owner()(address)"
 ```
 
 ---
